@@ -35,6 +35,7 @@ function reducer(state, action) {
         status: "active",
         secondremaning: state.questions.length * SEC_PER_QUESTION,
       };
+
     case "finish":
       return {
         ...state,
@@ -83,7 +84,9 @@ export default function App() {
   const totalQuestions = questions.length;
   const maxPoints = questions.reduce((acc, curr) => acc + curr.points, 0);
   useEffect(function () {
-    fetch("http://localhost:9000/questions")
+    fetch(
+      "https://my-json-server.typicode.com/adham-emad2000/React-Quiz/questions/"
+    )
       .then((res) => res.json())
       .then((data) => dispatch({ type: "dataRecieved", payload: data }))
       .catch((err) => dispatch({ type: "DataError" }));
